@@ -1,21 +1,26 @@
-import {data, comment_people} from "./main.js";
+import {data as comment_people} from "./main.js";
+
 
 const pictures = document.querySelector(".pictures");
 
-const picture = document.querySelector("#picture");
-picture.setAttribute("picture__id", data.id);
+const pictureTemplate = document.querySelector("#picture");
+const pictureImage = pictureTemplate.content.querySelector('.picture__img');
+const pictureComment = pictureTemplate.content.querySelector('.picture__comments')
+const pictureLikes = pictureTemplate.content.querySelector('.picture__likes');
 
-const Image = picture.content.querySelector('.picture__img');
-const Comments = picture.content.querySelector('.picture__comments')
-const Likes = picture.content.querySelector('.picture__likes');
-const pictureData = data.map((e, index) => getPicturePhotos(index));
-console.log(comment_people);
+const cloneTemplate = pictureTemplate.content.cloneNode(true);
+const pictureData = comment_people.map((e, index) => getPictureData(e,index));
 
-function getPicturePhotos(index) {
-    Image.src = data[index].url;
-    Likes.textContent = data[index].likes;
-    Comments.textContent = comment_people[index].comment;
-    const cloneTemplate = picture.content.cloneNode(true);
+
+
+export function getPictureData(e) {
+    pictureImage.src = e.url;
+    pictureImage.dataset.id = e.id;
+    pictureLikes.textContent = e.likes;
+    pictureComment.textContent = e.comments.length;
+    const cloneTemplate = pictureTemplate.content.cloneNode(true);
     pictures.appendChild(cloneTemplate);
     
 }
+
+export{pictureData,}
