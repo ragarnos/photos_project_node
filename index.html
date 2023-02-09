@@ -128,21 +128,20 @@
         </div>
       </section>
 
-      <!-- Тут будуть зображення інших користувачів-->
 
     </section>
 
-    <!-- Повноекранний показ зображення -->
+
     <section class="big-picture  overlay  hidden">
       <h2 class="big-picture__title  visually-hidden">Перегляд фотографії</h2>
       <div class="big-picture__preview">
 
-        <!-- Перегляд зображення -->
+
         <div class="big-picture__img">
           <img src="img/logo-background-3.jpg" alt="Девушка в купальнике" width="600" height="600">
         </div>
 
-        <!-- Інформація про зображення. Підпис, коментарі, кількість лайків -->
+
         <div class="big-picture__social  social">
           <div class="social__header">
             <img class="social__picture" src="img/avatar-1.svg" alt="Аватар автора фотографии" width="35" height="35">
@@ -150,7 +149,7 @@
             <p class="social__likes">Нравится <span class="likes-count">356</span></p>
           </div>
 
-          <!-- Коментарі до зображення-->
+
           <div class="social__comment-count">5 из <span class="comments-count">125</span> комментарів</div>
           <ul class="social__comments">
             <li class="social__comment">
@@ -163,10 +162,10 @@
             </li>
           </ul>
 
-          <!-- Кнопка для завантаження нової порції коментарів -->
+
           <button type="button" class="social__comments-loader  comments-loader">Завантажити ще</button>
 
-          <!-- Форма для відправки коментаря -->
+
           <div class="social__footer">
             <img class="social__picture" src="img/avatar-6.svg" alt="Аватар комментатора фотографии" width="35" height="35">
             <input type="text" class="social__footer-text" placeholder="Ваш комментарий...">
@@ -174,7 +173,7 @@
           </div>
         </div>
 
-        <!-- Кнопка для виходу із повноекранного перегляду зображення -->
+
         <button type="reset" class="big-picture__cancel  cancel" id="picture-cancel">Закрити</button>
       </div>
     </section>
@@ -185,7 +184,6 @@
     </div>
   </footer>
 
-  <!-- Шаблон зображення випадкового користувача-->
   <template id="picture">
     <a href="#" class="picture">
       <img class="picture__img" src="" width="182" height="182" alt="Випадкова фотографія">
@@ -196,7 +194,6 @@
     </a>
   </template>
 
-  <!-- Повідомлення з помилкою завантаження зображення -->
   <template id="error">
     <section class="error">
       <div class="error__inner">
@@ -206,7 +203,6 @@
     </section>
   </template>
 
-  <!-- Повідомлення про успішне завантаження зображення -->
   <template id="success">
     <section class="success">
       <div class="success__inner">
@@ -216,12 +212,10 @@
     </section>
   </template>
 
-  <!-- Екран завантаження зображення-->
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Завантажуємо...</div>
   </template>
 
-  <!-- Підключення js-->
   <script src = "/js/main.js" type="module"></script>
 </body>
 </html>

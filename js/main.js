@@ -1,20 +1,19 @@
-const countOfOffers = 25;
-const countOfComments = 5;
+const countOffers = 25;
+const countComments  = 25;
+const avatatsIcon = 6;
 
-const descriptions = ["Це літо було чудовим", "Фотка з минулого року",
-    "Дуже сумую за цими емоціями", "Сподіваюсь, що я там не був лише один раз"];
+const descriptions = ["Этот день был прекрасным", "фото с прошлого года!",
+    "Лучшие времена", "Моя поездка за границу"];
 
-const names = ["Артем", "Андрій", "Антон", "Богдан", "Микола", "Максим", "Михайло", "Олег", "Олексій",
-    "Іван", "Дмитро", "Василь", "Юрій", "Петро", "Володимир"]
+const names = ["Костя", "Роман", "Сергей", "Дима", "Богдан", "Наталья", "Анна", "Валентин", "Олег",
+    "Иван", "Анатолий", "Александр", "Лилия"]
 
-const comments = ["Все відмінно!", "Загалом все непогано. Але не всі.",
-    "Коли ви робите фотографію, добре б прибирати палець із кадру. Зрештою, це просто непрофесійно.",
-    "Моя бабуся випадково чхнула з фотоапаратом у руках і у неї вийшла фотографія краща.",
-    "Я послизнувся на банановій шкірці і впустив фотоапарат на кота і у мене вийшла фотографія краще.",
-    "Обличчя людей на фотці перекошені, ніби їх побивають. Як можна було зловити такий невдалий момент?"];
+const comments = ["Все супер!", "Все хорошо получились.",
+    "Лучшая фотка за все время, так как очень много воспоминаний на этой фотографии.",
+    "Ну такое себе, не лучшая фотка в истории, но сойдет.",
+    "Спонтанная фотка, но очень хрошо получилось."];
 
-const data = new Array(countOfOffers).fill(null).map((e,index)=> getOffer(index))
-const comment = new Array(countOfComments).fill(null).map((e, index) => getComment(index))
+
 
 function getRandomNumber(min, max) {
     const step1 = max - min + 1;
@@ -24,15 +23,14 @@ function getRandomNumber(min, max) {
     return result
 }
 
-function getRandomArray(arrayLenght, arrayMax) {
+function getRandom(min, max) {
     const arr = []
-    while (arr.length < arrayLenght) {
-        const r = Math.floor(Math.random() * arrayMax) + 1;
+    while (arr.length < min) {
+        const r = Math.floor(Math.random() * max) + 1;
         if (arr.indexOf(r) === -1) arr.push(r);
     }
     return arr;
-
-}
+  }
 
 
 function getRandomDescription() {
@@ -41,20 +39,7 @@ function getRandomDescription() {
     return randomDescription
 }
 
-const urlArray = getRandomArray(25, 25);
 
-
-function getOffer(index){
-    for (let i = 0; i < urlArray.length; i++) {
-    return {
-        id: index+1,
-        url: `photos/${urlArray[i]+1}.jpg`,     
-        description: getRandomDescription(),
-        likes: getRandomNumber(15, 200),
-    }
-}
-}
-console.log(getOffer());
 function getRandomComment() {
     const randomArrayNumber = getRandomNumber(0, comments.length -1)
     const RandomComment = comments[randomArrayNumber];
@@ -67,16 +52,28 @@ function getRandomName() {
     return RandomName
 }
 
-const avatarArray = getRandomArray(6, 6)
+const avatarArray = getRandom(1, 6)
+function getOffer(index){
+    return {
+        id: index+1,
+        url: `photos/${index+1}.jpg`,     
+        description: getRandomDescription(),
+        likes: getRandomNumber(15, 200),
+        comments: getComment(getRandomNumber(1, countComments))
+    }
+}
 
 function getComment(index) {
     for (let i = 0; i < avatarArray.length; i++) {
         return {
             id: index + 1,
-            avatar: `img/avatar-${avatarArray[i] + 1}.svg`,
+            avatar: `img/avatar-${index + 1}.svg`,
             comment: getRandomComment(),
             name: getRandomName()
 
         }
     }
 }
+const data = new Array(countOffers).fill(null).map((e,index)=> getOffer(index))
+const comment = new Array(countComments).fill(null).map((e, index) => getComment(index))
+console.log(data, comment);
