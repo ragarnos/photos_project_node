@@ -1,6 +1,5 @@
 const countOffers = 25;
 const countComments  = 25;
-const avatatsIcon = 6;
 
 const descriptions = ["Этот день был прекрасным", "фото с прошлого года!",
     "Лучшие времена", "Моя поездка за границу"];
@@ -10,7 +9,6 @@ const names = ["Костя", "Роман", "Сергей", "Дима", "Богд
 
 const comments = ["Все супер!", "Все хорошо получились.",
     "Лучшая фотка за все время, так как очень много воспоминаний на этой фотографии.",
-    "Ну такое себе, не лучшая фотка в истории, но сойдет.",
     "Спонтанная фотка, но очень хрошо получилось."];
 
 
@@ -51,29 +49,39 @@ function getRandomName() {
     const RandomName = names[randomArrayNumber];
     return RandomName
 }
-
-const avatarArray = getRandom(1, 6)
 function getOffer(index){
     return {
         id: index+1,
         url: `photos/${index+1}.jpg`,     
         description: getRandomDescription(),
         likes: getRandomNumber(15, 200),
-        comments: getComment(getRandomNumber(1, countComments))
     }
 }
-
+function shuffle(a) {
+    let j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
 function getComment(index) {
-    for (let i = 0; i < avatarArray.length; i++) {
+    while (comments.length < countComments-1) {
+        comments.push(...comments);
+    }
+    const numberOfComments = getRandomNumber(0, comments.length-1)
+    const commentsListId = ((shuffle(comments)).slice(numberOfComments))
         return {
             id: index + 1,
             avatar: `img/avatar-${index + 1}.svg`,
-            comment: getRandomComment(),
+            comment: commentsListId.length,
+            message: shuffle(commentsListId),
             name: getRandomName()
-
         }
-    }
 }
+
 const data = new Array(countOffers).fill(null).map((e,index)=> getOffer(index))
-const comment = new Array(countComments).fill(null).map((e, index) => getComment(index))
-console.log(data, comment);
+const comment_people = new Array(countComments).fill(null).map((e, index) => getComment(index))
+export{data, comment_people};
