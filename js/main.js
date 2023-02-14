@@ -1,6 +1,6 @@
 
-import {showBigPicture} from './zoomPhoto.js';
-
+import {ZoomBigPicture} from './zoomPhoto.js';
+import { ImageUpload } from "./valid.js";
 
 const countOfOffers = 25;
 const countOfComments = 8;
@@ -61,7 +61,6 @@ const comments = ["Все супер!", "Все хорошо получилис�
         }
 const data = new Array(countOfOffers).fill(null).map((e,index)=> getOffer(index))
 const comment_people = new Array(countOfComments).fill(null).map((e, index) => getComment(index))
-// console.log(data, comment_people);
 export{data, comment_people};
-showBigPicture(data);
-
+ZoomBigPicture(data);
+ImageUpload();

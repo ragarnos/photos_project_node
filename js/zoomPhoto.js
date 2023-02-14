@@ -15,7 +15,7 @@ let commentsHTML = "";
 
 
 
-export function showBigPicture(bigPictureArray) {
+export function ZoomBigPicture(bigPictureArray) {
     pictures.addEventListener('click', (e) => {
         photoId = e.target.dataset.id - 1;
         // console.log(e.target);
@@ -31,10 +31,10 @@ export function showBigPicture(bigPictureArray) {
 
             pictureArray.comments.forEach((comment) => {
                 commentsHTML += `
-        <li class="social__comment" data-post-id="${comment.id}">
-            <img class="social__picture" src="${comment.avatar}" alt="${comment.name}" width="35" height="35">
-            <p class="social__text">${comment.comment}</p>
-        </li>`;
+                <li class="social__comment" data-post-id="${comment.id}">
+                    <img class="social__picture" src="${comment.avatar}" alt="${comment.name}" width="35" height="35">
+                    <p class="social__text">${comment.comment}</p>
+                </li>`;
             });
 
             bigPicture.querySelector(".social__comments").innerHTML = commentsHTML;
