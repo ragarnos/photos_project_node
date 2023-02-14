@@ -1,6 +1,5 @@
-
-import {ZoomBigPicture} from './zoomPhoto.js';
-import { ImageUpload } from "./valid.js";
+const http = require("http");
+const fs = require("fs");
 
 const countOfOffers = 25;
 const countOfComments = 8;
@@ -61,6 +60,16 @@ const comments = ["Все супер!", "Все хорошо получилис�
         }
 const data = new Array(countOfOffers).fill(null).map((e,index)=> getOffer(index))
 const comment_people = new Array(countOfComments).fill(null).map((e, index) => getComment(index))
-export{data, comment_people};
-ZoomBigPicture(data);
-ImageUpload();
+fs.writeFileSync("result.txt", JSON.stringify(data));
+
+http.createServer((req, res) =>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
+
+    const url = req.url;
+    if(url === "/result"){
+        const photoResult = fs.readFileSync("result.txt", "utf-8");
+        res.end(photoResult);
+    }else if(photoResult.status !== 200){
+        res.end("Cannot find photos")
+    }
+}).listen(3000);

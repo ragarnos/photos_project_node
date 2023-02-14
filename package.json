@@ -1,24 +1,19 @@
 {
-  "name": "Gram",
+  "name": "backend",
   "version": "1.0.0",
-  "private": true,
-  "description": "Особистий проект",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
   "repository": {
     "type": "git"
   },
-  "devDependencies": {
-    "browser-sync": "2.26.14",
-    "eslint": "7.18.0",
-    "eslint-config-htmlacademy": "4.0.0"
-  },
-  "license": "MIT",
-  "dependencies": {},
-  "scripts": {
-    "start": "browser-sync start --server --no-ui --files \"js/**/*.js\"",
-    "test": "eslint js/"
-  },
-  "engines": {
-    "node": "14.x",
-    "npm": "6.x"
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/Casio25/PhotoProject_Backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5"
   }
 }
