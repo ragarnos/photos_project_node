@@ -3,7 +3,7 @@ import {ZoomBigPicture} from './zoomPhoto.js';
 import { ImageUpload } from "./valid.js";
 
 const countOfOffers = 25;
-const countOfComments = 8;
+const countOfComments = 15;
 const countOfAvatars = 6;
 
 const descriptions = ["Этот день был прекрасным", "фото с прошлого года!",
@@ -59,8 +59,15 @@ const comments = ["Все супер!", "Все хорошо получилис�
             }
         return ArrayOfComments;
         }
+const come = await fetch('http://localhost:3000/come')
+.then(function (resp) {
+    return resp.json()
+})
+.catch((error) => {
+    return `${error}`;
+});
 const data = new Array(countOfOffers).fill(null).map((e,index)=> getOffer(index))
 const comment_people = new Array(countOfComments).fill(null).map((e, index) => getComment(index))
-export{data, comment_people};
+export{data, comment_people, come};
 ZoomBigPicture(data);
 ImageUpload();

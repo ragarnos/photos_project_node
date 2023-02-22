@@ -7,8 +7,6 @@ const pictureTemplate = document.querySelector("#picture");
 const pictureImage = pictureTemplate.content.querySelector('.picture__img');
 const pictureComment = pictureTemplate.content.querySelector('.picture__comments')
 const pictureLikes = pictureTemplate.content.querySelector('.picture__likes');
-
-const cloneTemplate = pictureTemplate.content.cloneNode(true);
 const pictureData = comment_people.map((e, index) => getPictureData(e,index));
 
 

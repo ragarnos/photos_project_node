@@ -9,9 +9,13 @@ const bigPictureSocialLikes = bigPictureSocialReaction.querySelector(".likes-cou
 const bigPictureSocialComments = bigPictureSocial.querySelector(".social__comment-count");
 const bigPictureSocialNumberofComments = bigPictureSocialComments.querySelector(".comments-count");
 const pictures = document.querySelector(".pictures");
+const bigPictureLoadCommennts = document.querySelector(".social__comments-loader");
 const HTMLbody = document.body;
 let photoId = undefined;
 let commentsHTML = "";
+let commentsCountHTML = "";
+let Comfive = 5;
+let slicedPictureArray = undefined;
 
 
 
@@ -27,27 +31,90 @@ export function ZoomBigPicture(bigPictureArray) {
             bigPictureSocialLikes.textContent = pictureArray.likes;
             bigPictureSocialNumberofComments.textContent = pictureArray.comments.length;
             bigPictureSocialDescription.textContent = pictureArray.description;
+            slicedPictureArray = pictureArray.comments.slice(0, Comfive);
+            commentsCountHTML = `${slicedPictureArray.length} из <span class="comments - count"> ${pictureArray.comments.length + " "} </span> комментарів`;
+            bigPictureSocialComments.innerHTML = commentsCountHTML;
             HTMLbody.classList.add("modal-open");
+            
+            function loadAComments(){
+                pictureArray.comments.forEach((comment) => {
+                    commentsHTML += `
+                    <li class="social__comment" data-post-id="${comment.id}">
+                        <img class="social__picture" src="${comment.avatar}" alt="${comment.name}" width="35" height="35">
+                        <p class="social__text">${comment.comment}</p>
+                    </li>`;
+                });
 
-            pictureArray.comments.forEach((comment) => {
-                commentsHTML += `
+                bigPicture.querySelector(".social__comments").innerHTML = commentsHTML;
+            }
+            function loadFive(Comfive){
+                slicedPictureArray = pictureArray.comments.slice(0, Comfive);
+                console.log(`${slicedPictureArray.length}`);
+                slicedPictureArray.forEach((comment) => {
+                    commentsHTML += `
                 <li class="social__comment" data-post-id="${comment.id}">
                     <img class="social__picture" src="${comment.avatar}" alt="${comment.name}" width="35" height="35">
                     <p class="social__text">${comment.comment}</p>
                 </li>`;
-            });
+                    });
+                    bigPicture.querySelector(".social__comments").innerHTML = commentsHTML;
+                    if (pictureArray.comments.length === slicedPictureArray.length){
+                        bigPictureLoadCommennts.classList.add("hidden");
+                    }
+            }
+            function addingFive() {
+                Comfive += 5;
+                commentsHTML = "";
+                loadFive(Comfive);
+                commentsCountHTML = `${slicedPictureArray.length} из <span class="comments - count"> ${pictureArray.comments.length + " "} </span> комментарів`;
+                bigPictureSocialComments.innerHTML = commentsCountHTML;
 
-            bigPicture.querySelector(".social__comments").innerHTML = commentsHTML;
+            }
+            function getComments(){
+                bigPictureLoadCommennts.addEventListener('click', addingFive);
+                 function closeBigPictureEvent() {
+                    closeButton.removeEventListener('click', closeBigPictureEvent);
+                     bigPictureLoadCommennts.removeEventListener('click', addingFive);
+
+                }
+                closeButton.addEventListener('click', () => {
+                    closeBigPictureEvent();
+                })
+                HTMLbody.addEventListener('keydown', (e) => {
+                    if (e.keyCode === 27) {
+                        closeBigPictureEvent();
+                    }
+                })
+
+                if (pictureArray.comments.length < Comfive){
+                    console.log("less than 5");
+                    loadAComments();
+                    bigPictureLoadCommennts.classList.add("hidden");
+                    bigPictureSocialComments.classList.add("hidden");
+                }else{
+                    console.log("more than 5");
+                    loadFive(Comfive);
+                }
+            }
+            getComments();
+            
+
         }
 
 
     })
 
+            
     function closeBigPicture() {
         bigPicture.classList.add('hidden');
         HTMLbody.classList.remove("modal-open");
         closeButton.removeEventListener('click', closeBigPicture);
         commentsHTML = ""
+        Comfive = 5;
+        slicedPictureArray = undefined;
+        bigPictureSocialComments.innerHTML = "";
+        bigPictureLoadCommennts.classList.remove("hidden");
+        bigPictureSocialComments.classList.remove("hidden");
     }
     closeButton.addEventListener('click', () => {
         closeBigPicture();
