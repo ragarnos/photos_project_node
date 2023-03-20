@@ -50,6 +50,10 @@
                     <input type="text" class="scale__control  scale__control--value" value="100%" title="Image Scale" name="scale" readonly>
                     <button type="button" class="scale__control  scale__control--bigger">Збільшити</button>
                   </fieldset>
+                  
+                  <!-- Скриті поля для відправки на сервер -->
+                  <input type="hidden" name="scale" value="100" class="hidden-scale">
+                  <input type="hidden" name="scale" value="none" class="hidden-effect">
 
                   <!-- Попередній перегляд зображення -->
                   <div class="img-upload__preview">
@@ -219,5 +223,7 @@
   <script src = "/js/main.js" type="module"></script>
   <script src = "/js/picture.js" type="module"></script>
   <script src = "/js/zoomPhoto.js" type="module"></script>
+  <script src = "/js/slider.js" type="module"></script>
+  <script src = "/nouislider/nouislider.js" type="module"></script>
 </body>
 </html>
