@@ -29,8 +29,6 @@ export function ZoomBigPicture(bigPictureArray) {
             bigPictureImage.src = pictureArray.url;
             bigPictureSocialLikes.textContent = pictureArray.likes;
             bigPictureSocialNumberofComments.textContent = pictureArray.comments.length;
-            bigPictureImage.style.filter = pictureArray.filter;
-            bigPictureImage.style.scale = `${pictureArray.scale}%`
             bigPictureSocialDescription.textContent = pictureArray.description;
             slicedPictureArray = pictureArray.comments.slice(0, Comfive);
             commentsCountHTML = `${slicedPictureArray.length} из <span class="comments - count"> ${pictureArray.comments.length + " "} </span> комментарів`;
@@ -50,7 +48,6 @@ export function ZoomBigPicture(bigPictureArray) {
             }
             function loadFive(Comfive){
                 slicedPictureArray = pictureArray.comments.slice(0, Comfive);
-                console.log(`${slicedPictureArray.length}`);
                 slicedPictureArray.forEach((comment) => {
                     commentsHTML += `
                 <li class="social__comment" data-post-id="${comment.id}">
