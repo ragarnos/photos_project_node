@@ -13,6 +13,8 @@ const pictureData = comment_people.map((e, index) => getPictureData(e,index));
 
 export function getPictureData(e) {
     pictureImage.src = e.url;
+    pictureImage.style.scale =`${e.scale}%`;
+    pictureImage.style.filter = e.filter;
     pictureImage.dataset.id = e.id;
     pictureLikes.textContent = e.likes;
     pictureComment.textContent = e.comments.length;
