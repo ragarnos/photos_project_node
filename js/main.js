@@ -11,8 +11,14 @@ const form = document.querySelector(".img-upload__form");
 const success_template = document.querySelector("#success");
 const success = success_template.content.cloneNode(true);
 const bodys = document.querySelector('body');
+const filter = document.querySelector('.img-filters');
 const success__button = success.querySelector('.success__button');
 success__button.addEventListener('click', success_fn);
+
+window.onload = () => {
+     filter.style.opacity ='1';
+  };
+
     
 
 const come = await fetch('http://localhost:3001/result')
@@ -69,8 +75,8 @@ function submit(formExample){
 }
 submit(form);
 const data = come;
-const comment_people = come.comments;
-export{data, comment_people, come};
+const comment_people = data.comments;
+export{data, comment_people};
 ZoomBigPicture(data);
 ImageUpload();
 

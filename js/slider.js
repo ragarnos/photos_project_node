@@ -55,7 +55,6 @@ const settingFilter = {
 
 }
 
-console.log(effects__radio);
 scale_minus.addEventListener('click', scaleMinus)
 scale_plus.addEventListener('click', scalePlus)
 function scaleMinus(){
