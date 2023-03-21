@@ -3,6 +3,7 @@ const scale_plus = document.querySelector('.scale__control--bigger');
 let value_zoom = document.querySelector('.scale__control--value');
 const img_upload = document.querySelector('.img-upload__preview img');
 const effects__radio = document.querySelectorAll('.effects__radio');
+const effectValue = document.querySelector(".effect-level__value");
 const slider = document.querySelector('.effect-level__slider');
 let zoom = 100;
 const step_zoom = 25;

@@ -1,5 +1,6 @@
 const imageUpload = document.querySelector(".img-upload")
 const imageUploadForm = imageUpload.querySelector(".img-upload__start");
+const img_preview = document.querySelector('.img-upload__preview img');
 const imageIsUploaded = imageUploadForm.querySelector("#upload-file");
 const imageUploadOverlay = document.querySelector(".img-upload__overlay");
 const imageUploadClose = document.querySelector(".img-upload__cancel");
@@ -14,8 +15,19 @@ const maxCommentsSize = 140;
 export function ImageUpload(){
     imageIsUploaded.addEventListener('change', function (e) {
         if (e.target.files[0]) {
-            imageUploadOverlay.classList.remove("hidden");
-            document.body.classList.add("modal-open");
+                const reader = new FileReader();
+                reader.onloadend = function () {
+                    img_preview.src = reader.result;
+                }
+                if (e.target.files[0]) {
+                    reader.readAsDataURL(e.target.files[0]);
+                } else {
+                    preview.src = "";
+                }
+                imageUploadOverlay.classList.remove("hidden");
+                document.body.classList.add("modal-open");
+                // reader.readAsDataURL(e.target.files[0]);
+                // slider()
         }
     })
     function validate(evt) {
@@ -31,8 +43,6 @@ export function ImageUpload(){
             let simpleHashtags = hashtags.map(element => {
                 return element.substring(1);
             })
-            console.log(hashtags);
-            console.log(simpleHashtags);
             if (hashtags.length > 5){
                 evt.target.setCustomValidity("Ви не можете ввести більше 5 хештегів");
                 evt.target.reportValidity();

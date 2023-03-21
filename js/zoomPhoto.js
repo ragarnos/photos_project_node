@@ -22,7 +22,6 @@ let slicedPictureArray = undefined;
 export function ZoomBigPicture(bigPictureArray) {
     pictures.addEventListener('click', (e) => {
         photoId = e.target.dataset.id - 1;
-        // console.log(e.target);
         if (isNaN(photoId)) {
         } else {
             bigPicture.classList.remove('hidden');
@@ -30,6 +29,8 @@ export function ZoomBigPicture(bigPictureArray) {
             bigPictureImage.src = pictureArray.url;
             bigPictureSocialLikes.textContent = pictureArray.likes;
             bigPictureSocialNumberofComments.textContent = pictureArray.comments.length;
+            bigPictureImage.style.filter = pictureArray.filter;
+            bigPictureImage.style.scale = `${pictureArray.scale}%`
             bigPictureSocialDescription.textContent = pictureArray.description;
             slicedPictureArray = pictureArray.comments.slice(0, Comfive);
             commentsCountHTML = `${slicedPictureArray.length} из <span class="comments - count"> ${pictureArray.comments.length + " "} </span> комментарів`;
